@@ -5,7 +5,7 @@ require_once "postflop.php";
 
 class Player
 {
-    const VERSION = "Default PHP folding player";
+    const VERSION = "Clever Player";
 
     public function betRequest(array $game_state)
     {
