@@ -105,7 +105,8 @@ final class PreflopStrategy
         int $stack,
         int $bet,
         int $currentBuyIn,
-        int $minimumRaise
+        int $minimumRaise,
+        int $smallBlind
     ): int {
         $percentage = $this->getPercentage($cardNumbers);
 
@@ -129,14 +130,14 @@ final class PreflopStrategy
         }
 
         // Fold if the the buy-in is too big
-        if ($currentBuyIn > $stack / 10 && $percentage <= 6) {
+        if ($currentBuyIn > max($stack / 10, $smallBlind * 2) && $percentage <= 6) {
             return 0;
         }
 
         return $currentBuyIn;
     }
 
-    private function getPercentage(array $cardNumbers): int
+    public function getPercentage(array $cardNumbers): int
     {
         if (isset(self::$percentages[$cardNumbers[0] . $cardNumbers[1]])) {
             return self::$percentages[$cardNumbers[0] . $cardNumbers[1]];

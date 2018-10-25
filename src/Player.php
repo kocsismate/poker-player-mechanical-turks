@@ -19,7 +19,8 @@ class Player
                 Common::getOurStack($game_state),
                 Common::getOurBet($game_state),
                 $game_state["current_buy_in"],
-                $game_state["minimum_raise"]
+                $game_state["minimum_raise"],
+                $game_state["small_blind"]
             );
         }
 
