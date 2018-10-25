@@ -6,7 +6,7 @@ class Player
 
     public function betRequest($game_state)
     {
-        return 1;
+        return $game_state['current_buy_in'];
     }
 
     public function showdown($game_state)
