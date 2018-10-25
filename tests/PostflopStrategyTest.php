@@ -1065,4 +1065,221 @@ class PostflopStrategyTest extends TestCase
         $strategy = new PostflopStrategy();
         $this->assertFalse($strategy->hasFourOfAKind($cards));
     }
+
+    public function testHasStraightFlush1()
+    {
+        $cards = [
+            [
+                "rank" => '7',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '10',
+                "suit" => 'clubs',
+            ],
+        ];
+        $strategy = new PostflopStrategy();
+        $this->assertFalse($strategy->hasStraightFlush($cards));
+    }
+
+    public function testHasStraightFlush2()
+    {
+        $cards = [
+            [
+                "rank" => 'K',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'clubs',
+            ],
+        ];
+        $strategy = new PostflopStrategy();
+        $this->assertFalse($strategy->hasStraightFlush($cards));
+    }
+
+
+    public function testHasStraightFlush3()
+    {
+        $cards = [
+            [
+                "rank" => 'K',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'clubs',
+            ],
+        ];
+        $strategy = new PostflopStrategy();
+        $this->assertFalse($strategy->hasStraightFlush($cards));
+    }
+
+    public function testHasStraightFlush4()
+    {
+        $cards = [
+            [
+                "rank" => '7',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'diamonds',
+            ],
+        ];
+        $strategy = new PostflopStrategy();
+        $this->assertFalse($strategy->hasStraightFlush($cards));
+    }
+
+    public function testHasStraightFlush5()
+    {
+        $cards = [
+            [
+                "rank" => '4',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => 'J',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => 'Q',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '10',
+                "suit" => 'diamonds',
+            ],
+        ];
+        $strategy = new PostflopStrategy();
+        $this->assertTrue($strategy->hasStraightFlush($cards));
+    }
+
+    public function testHasStraightFlush6()
+    {
+        $cards = [
+            [
+                "rank" => '7',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => '10',
+                "suit" => 'clubs',
+            ],
+        ];
+        $strategy = new PostflopStrategy();
+        $this->assertTrue($strategy->hasStraightFlush($cards));
+    }
 }
