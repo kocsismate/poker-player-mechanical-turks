@@ -61,6 +61,13 @@ class Postflop
 
     private function hasPair(array $cards): bool
     {
+        $nrOfCards = sizeof($cards);
+        for($i = 0; $i < $nrOfCards; $i++) {
+            for($j = $i+1; $j < $nrOfCards; $j++) {
+                if($cards[$i]["rank"] == $cards[$j]["rank"])
+                    return true;
+            }
+        }
         return false;
     }
 
