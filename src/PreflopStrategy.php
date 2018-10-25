@@ -102,13 +102,13 @@ final class PreflopStrategy
     {
         $percentage = $this->getPercentage($cardNumbers);
 
-        // Fold if percentage is lame
-        if ($percentage === 0) {
-            return 0;
-        }
-
         if ($isSameColour) {
             $percentage++;
+        }
+
+        // Fold if percentage is lame
+        if ($percentage <= 4) {
+            return 0;
         }
 
         // Fold if it is all-in and percentage is <= 7
