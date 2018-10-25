@@ -9,8 +9,6 @@ class Player
 
     public function betRequest(array $game_state)
     {
-        return $game_state['current_buy_in'];
-
         if (empty($game_state["community_cards"])) {
             $preflop = new Preflop();
 
