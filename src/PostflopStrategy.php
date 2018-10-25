@@ -8,7 +8,7 @@ class PostflopStrategy
     {
         $value = $this->getHandValue($state);
         $bet = Common::calculateBetFromValue($value, $state);
-        error_log("Value: $value Bet: $bet Cards: " . print_r($this->getAllCards($state), true));
+        error_log("GameID: " . $state['game_id'] . " Round: " . $state['round'] . " Value: $value Bet: $bet Cards: " . print_r($this->getAllCards($state), true));
         return $bet;
     }
 
