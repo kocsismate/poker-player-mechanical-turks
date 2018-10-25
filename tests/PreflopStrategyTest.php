@@ -28,4 +28,18 @@ class PreflopStrategyTest extends TestCase
 
         $this->assertEquals(0, $preflop->calculate(["2", "7"], false, false, 100, 20));
     }
+
+    public function testJumboThree()
+    {
+        $preflop = new PreflopStrategy();
+
+        $this->assertEquals(0, $preflop->calculate(["J", "3"], false, true, 100, 20));
+    }
+
+    public function testSixFour()
+    {
+        $preflop = new PreflopStrategy();
+
+        $this->assertEquals(100, $preflop->calculate(["6", "4"], true, false, 100, 20));
+    }
 }
