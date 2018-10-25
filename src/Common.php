@@ -43,7 +43,7 @@ class Common
         return 0;
     }
 
-    public static function isAllIn(array $state): int
+    public static function isAllIn(array $state): bool
     {
         $stack = self::getOurStack($state);
         $currentBuyIn = (int)$state['current_buy_in'];
