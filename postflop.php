@@ -10,9 +10,9 @@ class Postflop
         if ($value > 1000) {
             return Common::getOurStack($state);
         } elseif ($value > 200) {
-            return max((int)$state['current_buy_in'], $state['minimum_raise']);
+            return max((int)$state['current_buy_in'], $state['minimum_raise'] ?? ($state['small_blind'] * 2));
         } elseif ($value > 50) {
-            return $state['minimum_raise'];
+            return $state['minimum_raise'] ?? ($state['small_blind'] * 2);
         }
         return 0;
     }
@@ -63,7 +63,7 @@ class Postflop
 
     private function getAllCards($state): array
     {
-        return Common::getCardsInHand($state) + $this->getCommonCards($state);
+        return array_merge(Common::getCardsInHand($state), $this->getCommonCards($state));
     }
 
     private function getCommonCards(array $state): array
@@ -96,7 +96,7 @@ class Postflop
         return false;
     }
 
-    private function hasThreeOfAKind(array $cards): bool
+    public function hasThreeOfAKind(array $cards): bool
     {
         $nrOfCards = sizeof($cards);
         for($i = 0; $i < $nrOfCards-2; $i++) {
@@ -110,12 +110,31 @@ class Postflop
         return false;
     }
 
-    private function hasTwoPairs(array $cards): bool
+    public function hasTwoPairs(array $cards): bool
     {
+        $cardNumbers = [];
+        foreach ($cards as $card) {
+            $cardNumbers[] = $card["rank"];
+        }
+        sort($cardNumbers);
+
+        $nrOfCards = sizeof($cardNumbers);
+        for($i = 0; $i < $nrOfCards-3; $i++) {
+            for($j = $i+1; $j < $nrOfCards-2; $j++) {
+                if($cardNumbers[$i] == $cardNumbers[$j]) { //found one pair
+                    for($k = $j+1; $k < $nrOfCards-1; $k++) {
+                        for($l = $k+1; $l < $nrOfCards; $l++) {
+                            if($cardNumbers[$k] == $cardNumbers[$l])
+                                return true;
+                        }
+                    }
+                }
+            }
+        }
         return false;
     }
 
-    private function hasPair(array $cards): bool
+    public function hasPair(array $cards): bool
     {
         $nrOfCards = sizeof($cards);
         for($i = 0; $i < $nrOfCards-1; $i++) {
