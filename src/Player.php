@@ -5,7 +5,7 @@ namespace Poker;
 
 class Player
 {
-    const VERSION = "Clever Player";
+    const VERSION = "Mechanical turk";
 
     public function betRequest(array $game_state): int
     {
