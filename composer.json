@@ -1,2 +1,8 @@
 {
+  "name": "kocsismate/poker-player-mechanical-turks",
+  "description": "Mechanical Turk Lean Poker Player",
+  "type": "project",
+  "require": {
+    "php": "^7.2"
+  }
 }
