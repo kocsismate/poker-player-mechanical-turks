@@ -2,6 +2,22 @@
 
 class Common
 {
+    public static function getCardValue(string $card): int
+    {
+        switch ($card) {
+            case 'A':
+                return 14;
+            case 'K':
+                return 13;
+            case 'Q':
+                return 12;
+            case 'J':
+                return 11;
+            default:
+                return (int)$card;
+        }
+    }
+
     public static function getCardsInHand(array $state): array
     {
         foreach ($state['players'] as $player) {
@@ -33,5 +49,17 @@ class Common
         }
 
         return $cardNumbers;
+    }
+
+    public static function getHighestCard(array $state): string
+    {
+        $cards = self::getCardNumbersInHand($state);
+        $highest = $cards[0];
+        foreach ($cards as $card) {
+            if (self::getCardValue($highest) < self::getCardValue($card)) {
+                $highest = $card;
+            }
+        }
+        return $highest;
     }
 }
