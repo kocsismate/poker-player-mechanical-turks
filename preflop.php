@@ -1,7 +1,5 @@
 <?php
 
-require_once "common.php";
-
 class Preflop
 {
     private static $percentages = [
@@ -70,9 +68,8 @@ class Preflop
         "87" => 5,
     ];
 
-    public function calculate(array $state): int
+    public function calculate(array $cardNumbers, bool $isAllIn, int $currentBuyIn, int $minimumRaise): int
     {
-        $cardNumbers = Common::getCardNumbersInHand($state);
         $percentage = $this->getPercentage($cardNumbers);
 
         // Fold if percentage is lame
@@ -81,11 +78,16 @@ class Preflop
         }
 
         // Fold if it is all-in and percentage is < 7
-        if (Common::isAllIn($state) && $percentage < 7) {
+        if ($isAllIn && $percentage < 7) {
             return 0;
         }
 
-        return (int)$state['current_buy_in'];
+        // Raise if percentage is > 7
+        if ($isAllIn && $percentage > 7) {
+            return $currentBuyIn + $minimumRaise;
+        }
+
+        return $minimumRaise;
     }
 
     private function getPercentage(array $cardNumbers): int
