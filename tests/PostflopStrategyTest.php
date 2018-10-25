@@ -1,9 +1,12 @@
 <?php
+declare(strict_types=1);
 
-require_once '../vendor/autoload.php';
-require_once '../postflop.php';
+namespace Poker\Tests;
 
-class PostlopTest extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+use Poker\PostflopStrategy;
+
+class PostflopStrategyTest extends TestCase
 {
     private $state = [
         "players" => [
@@ -88,7 +91,7 @@ class PostlopTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $bet = $strategy->calculate($state);
 
         $this->assertEquals(20, $bet);
@@ -122,7 +125,7 @@ class PostlopTest extends \PHPUnit\Framework\TestCase
             ],
         ];
 
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $bet = $strategy->calculate($state);
 
         $this->assertEquals(0, $bet);
@@ -152,7 +155,7 @@ class PostlopTest extends \PHPUnit\Framework\TestCase
                 "suit" => 'diamonds',
             ],
         ];
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $this->assertTrue($strategy->hasPair($cards));
     }
 
@@ -180,7 +183,7 @@ class PostlopTest extends \PHPUnit\Framework\TestCase
                 "suit" => 'diamonds',
             ],
         ];
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $this->assertFalse($strategy->hasPair($cards));
     }
 
@@ -216,7 +219,7 @@ class PostlopTest extends \PHPUnit\Framework\TestCase
                 "suit" => 'diamonds',
             ],
         ];
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $this->assertFalse($strategy->hasPair($cards));
     }
 
@@ -252,7 +255,7 @@ class PostlopTest extends \PHPUnit\Framework\TestCase
                 "suit" => 'diamonds',
             ],
         ];
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $this->assertTrue($strategy->hasPair($cards));
     }
 
@@ -281,7 +284,7 @@ class PostlopTest extends \PHPUnit\Framework\TestCase
                 "suit" => 'diamonds',
             ],
         ];
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $this->assertTrue($strategy->hasTwoPairs($cards));
     }
 
@@ -309,7 +312,7 @@ class PostlopTest extends \PHPUnit\Framework\TestCase
                 "suit" => 'diamonds',
             ],
         ];
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $this->assertFalse($strategy->hasTwoPairs($cards));
     }
 
@@ -337,7 +340,7 @@ class PostlopTest extends \PHPUnit\Framework\TestCase
                 "suit" => 'diamonds',
             ],
         ];
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $this->assertFalse($strategy->hasTwoPairs($cards));
     }
 
@@ -373,7 +376,7 @@ class PostlopTest extends \PHPUnit\Framework\TestCase
                 "suit" => 'diamonds',
             ],
         ];
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $this->assertFalse($strategy->hasTwoPairs($cards));
     }
 
@@ -409,7 +412,7 @@ class PostlopTest extends \PHPUnit\Framework\TestCase
                 "suit" => 'diamonds',
             ],
         ];
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $this->assertTrue($strategy->hasTwoPairs($cards));
     }
 }

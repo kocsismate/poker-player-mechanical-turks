@@ -1,6 +1,9 @@
 <?php
+declare(strict_types=1);
 
-class Preflop
+namespace Poker;
+
+class PreflopStrategy
 {
     private static $percentages = [
         "AA" => 8,

@@ -1,8 +1,8 @@
 <?php
 
-require_once "common.php";
+namespace Poker;
 
-class Postflop
+class PostflopStrategy
 {
     public function calculate(array $state): int
     {

@@ -1,6 +1,9 @@
 <?php
+declare(strict_types=1);
 
-require_once('player.php');
+require_once('vendor/autoload.php');
+
+use Poker\Player;
 
 $player = new Player();
 
