@@ -7,7 +7,9 @@ class PostflopStrategy
     public function calculate(array $state): int
     {
         $value = $this->getHandValue($state);
-        return Common::calculateBetFromValue($value, $state);
+        $bet = Common::calculateBetFromValue($value, $state);
+        error_log("Value: $value Bet: $bet Cards: " . print_r($this->getAllCards($state), true));
+        return $bet;
     }
 
     private function getHandValue($state): int
