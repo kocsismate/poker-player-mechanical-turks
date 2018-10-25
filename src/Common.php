@@ -84,4 +84,16 @@ class Common
         }
         return $highest;
     }
+
+    public static function calculateBetFromValue($value, $state): int
+    {
+        if ($value > 1000) {
+            return Common::getOurStack($state);
+        } elseif ($value > 200) {
+            return max((int)$state['current_buy_in'], $state['minimum_raise'] ?? ($state['small_blind'] * 2));
+        } elseif ($value > 50) {
+            return $state['minimum_raise'] ?? ($state['small_blind'] * 2);
+        }
+        return 0;
+    }
 }

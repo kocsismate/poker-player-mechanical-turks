@@ -7,14 +7,7 @@ class PostflopStrategy
     public function calculate(array $state): int
     {
         $value = $this->getHandValue($state);
-        if ($value > 1000) {
-            return Common::getOurStack($state);
-        } elseif ($value > 200) {
-            return max((int)$state['current_buy_in'], $state['minimum_raise'] ?? ($state['small_blind'] * 2));
-        } elseif ($value > 50) {
-            return $state['minimum_raise'] ?? ($state['small_blind'] * 2);
-        }
-        return 0;
+        return Common::calculateBetFromValue($value, $state);
     }
 
     private function getHandValue($state): int
