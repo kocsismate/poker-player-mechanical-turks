@@ -78,6 +78,17 @@ class PostflopStrategy
 
     public function hasFourOfAKind(array $cards): bool
     {
+        $nrOfCards = sizeof($cards);
+        for($i = 0; $i < $nrOfCards-3; $i++) {
+            for($j = $i+1; $j < $nrOfCards-2; $j++) {
+                for($k = $j+1; $k < $nrOfCards-1; $k++) {
+                    for($l = $k+1; $l < $nrOfCards; $l++) {
+                        if($cards[$i]["rank"] == $cards[$j]["rank"] && $cards[$i]["rank"] == $cards[$k]["rank"] && $cards[$i]["rank"] == $cards[$l]["rank"])
+                            return true;
+                    }
+                }
+            }
+        }
         return false;
     }
 
