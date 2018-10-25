@@ -697,6 +697,78 @@ class PostflopStrategyTest extends TestCase
                 "suit" => 'diamonds',
             ],
             [
+                "rank" => '9',
+                "suit" => 'diamonds',
+            ],
+        ];
+        $strategy = new PostflopStrategy();
+        $this->assertFalse($strategy->hasStraight($cards));
+    }
+
+    public function testHasStraight3()
+    {
+        $cards = [
+            [
+                "rank" => '4',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'J',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => 'Q',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '10',
+                "suit" => 'diamonds',
+            ],
+        ];
+        $strategy = new PostflopStrategy();
+        $this->assertTrue($strategy->hasStraight($cards));
+    }
+
+    public function testHasStraight4()
+    {
+        $cards = [
+            [
+                "rank" => '7',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'diamonds',
+            ],
+            [
                 "rank" => '10',
                 "suit" => 'clubs',
             ],
