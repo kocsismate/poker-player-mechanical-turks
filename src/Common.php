@@ -69,6 +69,7 @@ class Common
             if ($card["suit"] != $commonColor)
                 return false;
         }
+
         return true;
     }
 
@@ -93,6 +94,7 @@ class Common
                 $highest = $card;
             }
         }
+
         return $highest;
     }
 
@@ -100,11 +102,16 @@ class Common
     {
         if ($value > 1000) {
             return Common::getOurStack($state);
-        } elseif ($value > 200) {
+        }
+
+        if ($value > 200) {
             return max((int)$state['current_buy_in'], $state['minimum_raise'] ?? ($state['small_blind'] * 2));
-        } elseif ($value > 50) {
+        }
+
+        if ($value > 50) {
             return $state['minimum_raise'] ?? ($state['small_blind'] * 2);
         }
+
         return 0;
     }
 }
