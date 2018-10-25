@@ -51,6 +51,15 @@ class Postflop
 
     private function hasThreeOfAKind(array $cards): bool
     {
+        $nrOfCards = sizeof($cards);
+        for($i = 0; $i < $nrOfCards-2; $i++) {
+            for($j = $i+1; $j < $nrOfCards-1; $j++) {
+                for($k = $j+1; $k < $nrOfCards; $k++) {
+                    if($cards[$i]["rank"] == $cards[$j]["rank"] && $cards[$i]["rank"] == $cards[$k]["rank"])
+                        return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -62,7 +71,7 @@ class Postflop
     private function hasPair(array $cards): bool
     {
         $nrOfCards = sizeof($cards);
-        for($i = 0; $i < $nrOfCards; $i++) {
+        for($i = 0; $i < $nrOfCards-1; $i++) {
             for($j = $i+1; $j < $nrOfCards; $j++) {
                 if($cards[$i]["rank"] == $cards[$j]["rank"])
                     return true;
