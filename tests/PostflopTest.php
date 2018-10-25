@@ -109,4 +109,104 @@ class PostlopTest extends \PHPUnit\Framework\TestCase
         $strategy = new Postflop();
         $this->assertTrue($strategy->hasPair($cards));
     }
+
+    public function testHasPair2()
+    {
+        $cards = [
+            [
+                "rank" => '2',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '7',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'Q',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+        ];
+        $strategy = new Postflop();
+        $this->assertFalse($strategy->hasPair($cards));
+    }
+
+    public function testHasPair3()
+    {
+        $cards = [
+            [
+                "rank" => '2',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '7',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'Q',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'diamonds',
+            ],
+        ];
+        $strategy = new Postflop();
+        $this->assertFalse($strategy->hasPair($cards));
+    }
+
+    public function testHasPair4()
+    {
+        $cards = [
+            [
+                "rank" => '8',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '7',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'Q',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'diamonds',
+            ],
+        ];
+        $strategy = new Postflop();
+        $this->assertTrue($strategy->hasPair($cards));
+    }
 }
