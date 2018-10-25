@@ -74,7 +74,7 @@ class Preflop
     {
         $cardNumbers = Common::getCardNumbersInHand($state);
 
-        if (isset(self::$percentages[$cardNumbers[0] . $cardNumbers[1]]) == false) {
+        if (isset(self::$percentages[$cardNumbers[0] . $cardNumbers[1]]) == false && isset(self::$percentages[$cardNumbers[1] . $cardNumbers[0]]) == false) {
             return 0;
         }
 
