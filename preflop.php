@@ -74,7 +74,8 @@ class Preflop
     {
         $cardNumbers = Common::getCardNumbersInHand($state);
 
-        if (isset(self::$percentages[$cardNumbers[0] . $cardNumbers[1]])) {
+        if (isset(self::$percentages[$cardNumbers[0] . $cardNumbers[1]]) == false) {
+            return 0;
         }
 
         return (int)$state['current_buy_in'];
