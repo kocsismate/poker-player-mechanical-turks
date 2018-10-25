@@ -14,8 +14,8 @@ class Player
 
             return $strategy->calculate(
                 Common::getCardNumbersInHand($game_state),
-                Common::isAllIn($game_state),
                 Common::isSameColor(Common::getCardsInHand($game_state)),
+                Common::isAllIn($game_state),
                 Common::getOurStack($game_state),
                 Common::getOurBet($game_state),
                 $game_state["current_buy_in"],
