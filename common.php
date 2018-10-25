@@ -29,6 +29,17 @@ class Common
         return [];
     }
 
+    public static function getOurStack(array $state): int
+    {
+        foreach ($state['players'] as $player) {
+            if (!empty($player['hole_cards'])) {
+                return (int)$player['stack'];
+            }
+        }
+
+        return 0;
+    }
+
     public static function isSameColor(array $cards): bool
     {
         $commonColor = $cards[0]["suit"];
