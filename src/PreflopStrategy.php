@@ -102,6 +102,7 @@ final class PreflopStrategy
         array $cardNumbers,
         bool $isSameColour,
         bool $isAllIn,
+        int $stack,
         int $bet,
         int $currentBuyIn,
         int $minimumRaise
@@ -117,14 +118,19 @@ final class PreflopStrategy
             return 0;
         }
 
-        // Fold if it is all-in and percentage is <= 7
-        if ($isAllIn && $percentage <= 7) {
+        // Fold if it is all-in and percentage is <= 6
+        if ($isAllIn && $percentage <= 6) {
             return 0;
         }
 
         // Raise if percentage is >= 8
         if ($percentage >= 8) {
             return $currentBuyIn - $bet + $minimumRaise;
+        }
+
+        // Fold if the the buy-in is too big
+        if ($currentBuyIn > $stack / 10 && $percentage <= 6) {
+            return 0;
         }
 
         return $currentBuyIn;
