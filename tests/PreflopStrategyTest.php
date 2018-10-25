@@ -12,7 +12,7 @@ class PreflopStrategyTest extends TestCase
     {
         $preflop = new PreflopStrategy();
 
-        $this->assertEquals(100, $preflop->calculate(["A", "A"], true, 100, 20));
+        $this->assertEquals(120, $preflop->calculate(["A", "A"], true, 100, 20));
     }
 
     public function testPairOfTwo()

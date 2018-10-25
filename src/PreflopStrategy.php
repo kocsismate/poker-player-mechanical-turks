@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Poker;
 
-class PreflopStrategy
+final class PreflopStrategy
 {
     private static $percentages = [
         "AA" => 8,
@@ -71,13 +71,17 @@ class PreflopStrategy
         "87" => 5,
     ];
 
-    public function calculate(array $cardNumbers, bool $isAllIn, int $currentBuyIn, int $minimumRaise): int
+    public function calculate(array $cardNumbers, bool $isSameColour, bool $isAllIn, int $currentBuyIn, int $minimumRaise): int
     {
         $percentage = $this->getPercentage($cardNumbers);
 
         // Fold if percentage is lame
         if ($percentage === 0) {
             return 0;
+        }
+
+        if ($isSameColour) {
+            $percentage++;
         }
 
         // Fold if it is all-in and percentage is <= 7
