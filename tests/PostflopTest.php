@@ -81,4 +81,32 @@ class PostlopTest extends \PHPUnit\Framework\TestCase
         $strategy = new Postflop();
 
     }
+
+    public function testHasPair1()
+    {
+        $cards = [
+            [
+                "rank" => '2',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '7',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'Q',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '7',
+                "suit" => 'diamonds',
+            ],
+        ];
+        $strategy = new Postflop();
+        $this->assertTrue($strategy->hasPair($cards));
+    }
 }

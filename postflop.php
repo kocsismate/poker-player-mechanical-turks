@@ -96,7 +96,7 @@ class Postflop
         return false;
     }
 
-    private function hasThreeOfAKind(array $cards): bool
+    public function hasThreeOfAKind(array $cards): bool
     {
         $nrOfCards = sizeof($cards);
         for($i = 0; $i < $nrOfCards-2; $i++) {
@@ -110,12 +110,31 @@ class Postflop
         return false;
     }
 
-    private function hasTwoPairs(array $cards): bool
+    public function hasTwoPairs(array $cards): bool
     {
+        $cardNumbers = [];
+        foreach ($cards as $card) {
+            $cardNumbers[] = $card["rank"];
+        }
+        sort($cardNumbers);
+
+        $nrOfCards = sizeof($cardNumbers);
+        for($i = 0; $i < $nrOfCards-3; $i++) {
+            for($j = $i+1; $j < $nrOfCards-2; $j++) {
+                if($cardNumbers[$i] == $cardNumbers[$j]) { //found one pair
+                    for($k = $j+1; $k < $nrOfCards-1; $k++) {
+                        for($l = $k+1; $l < $nrOfCards; $l++) {
+                            if($cardNumbers[$k] == $cardNumbers[$l])
+                                return true;
+                        }
+                    }
+                }
+            }
+        }
         return false;
     }
 
-    private function hasPair(array $cards): bool
+    public function hasPair(array $cards): bool
     {
         $nrOfCards = sizeof($cards);
         for($i = 0; $i < $nrOfCards-1; $i++) {
