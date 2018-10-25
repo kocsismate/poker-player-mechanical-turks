@@ -415,4 +415,221 @@ class PostflopStrategyTest extends TestCase
         $strategy = new PostflopStrategy();
         $this->assertTrue($strategy->hasTwoPairs($cards));
     }
+
+    public function testhasThreeOfAKind1()
+    {
+        $cards = [
+            [
+                "rank" => '8',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'Q',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'diamonds',
+            ],
+        ];
+        $strategy = new Postflop();
+        $this->assertFalse($strategy->hasThreeOfAKind($cards));
+    }
+
+    public function testhasThreeOfAKind2()
+    {
+        $cards = [
+            [
+                "rank" => '9',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'Q',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'diamonds',
+            ],
+        ];
+        $strategy = new Postflop();
+        $this->assertTrue($strategy->hasThreeOfAKind($cards));
+    }
+
+    public function testhasThreeOfAKind3()
+    {
+        $cards = [
+            [
+                "rank" => 'K',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'Q',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+        ];
+        $strategy = new Postflop();
+        $this->assertFalse($strategy->hasThreeOfAKind($cards));
+    }
+
+    public function testhasThreeOfAKind4()
+    {
+        $cards = [
+            [
+                "rank" => 'K',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'clubs',
+            ],
+        ];
+        $strategy = new Postflop();
+        $this->assertTrue($strategy->hasThreeOfAKind($cards));
+    }
+
+
+    public function testHasFlush1()
+    {
+        $cards = [
+            [
+                "rank" => 'K',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'clubs',
+            ],
+        ];
+        $strategy = new Postflop();
+        $this->assertTrue($strategy->hasFlush($cards));
+    }
+
+    public function testHasFlush2()
+    {
+        $cards = [
+            [
+                "rank" => 'K',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '3',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '8',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'clubs',
+            ],
+        ];
+        $strategy = new Postflop();
+        $this->assertFalse($strategy->hasFlush($cards));
+    }
 }
