@@ -73,6 +73,30 @@ class PostflopStrategy
 
     public function hasStraightFlush(array $cards): bool
     {
+        usort($cards, function ($a, $b) {
+            return Common::getCardValue($a['rank']) <=> Common::getCardValue($b['rank']);
+        });
+
+        $neighbours = 0;
+        $lastValue = Common::getCardValue($cards[0]['rank']);
+        $color = $cards[0]['suit'];
+        foreach ($cards as $card) {
+            if (Common::getCardValue($card['rank']) == $lastValue + 1) {
+                $neighbours += 1;
+                if ($color !== $card['suit']) {
+                    $neighbours = 0;
+                }
+            } else {
+                $neighbours = 0;
+                $color = $card['suit'];
+            }
+            $lastValue = Common::getCardValue($card['rank']);
+
+            if ($neighbours > 3) {
+                return true;
+            }
+        }
+
         return false;
     }
 
