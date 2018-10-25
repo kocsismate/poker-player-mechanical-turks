@@ -36,7 +36,18 @@ class Common
     {
         foreach ($state['players'] as $player) {
             if (!empty($player['hole_cards'])) {
-                return (int)$player['stack'];
+                return (int) $player['stack'];
+            }
+        }
+
+        return 0;
+    }
+
+    public static function getOurBet(array $state): int
+    {
+        foreach ($state['players'] as $player) {
+            if (!empty($player['hole_cards'])) {
+                return (int) $player['bet'];
             }
         }
 
@@ -48,7 +59,7 @@ class Common
         $stack = self::getOurStack($state);
         $currentBuyIn = (int) $state['current_buy_in'];
 
-        return $stack === $currentBuyIn;
+        return $currentBuyIn >= $stack;
     }
 
     public static function isSameColor(array $cards): bool

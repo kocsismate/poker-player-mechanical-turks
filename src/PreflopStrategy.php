@@ -98,8 +98,14 @@ final class PreflopStrategy
         "42" => 4,
     ];
 
-    public function calculate(array $cardNumbers, bool $isSameColour, bool $isAllIn, int $currentBuyIn, int $minimumRaise): int
-    {
+    public function calculate(
+        array $cardNumbers,
+        bool $isSameColour,
+        bool $isAllIn,
+        int $bet,
+        int $currentBuyIn,
+        int $minimumRaise
+    ): int {
         $percentage = $this->getPercentage($cardNumbers);
 
         if ($isSameColour) {
@@ -118,7 +124,7 @@ final class PreflopStrategy
 
         // Raise if percentage is >= 8
         if ($percentage >= 8) {
-            //return $currentBuyIn + $minimumRaise;
+            return $currentBuyIn - $bet + $minimumRaise;
         }
 
         return $currentBuyIn;
