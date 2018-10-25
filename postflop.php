@@ -10,9 +10,9 @@ class Postflop
         if ($value > 1000) {
             return Common::getOurStack($state);
         } elseif ($value > 200) {
-            return max((int)$state['current_buy_in'], $state['minimum_raise']);
+            return max((int)$state['current_buy_in'], $state['minimum_raise'] ?? ($state['small_blind'] * 2));
         } elseif ($value > 50) {
-            return $state['minimum_raise'];
+            return $state['minimum_raise'] ?? ($state['small_blind'] * 2);
         }
         return 0;
     }
@@ -63,7 +63,7 @@ class Postflop
 
     private function getAllCards($state): array
     {
-        return Common::getCardsInHand($state) + $this->getCommonCards($state);
+        return array_merge(Common::getCardsInHand($state), $this->getCommonCards($state));
     }
 
     private function getCommonCards(array $state): array

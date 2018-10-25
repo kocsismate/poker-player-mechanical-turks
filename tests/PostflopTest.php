@@ -60,6 +60,40 @@ class PostlopTest extends \PHPUnit\Framework\TestCase
         "pot" => 0,
     ];
 
+    public function testTwoPairsCall()
+    {
+        $state = $this->state;
+        $state['community_cards'] = [
+            [
+                "rank" => '2',
+                "suit" => 'hearts',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => 'A',
+                "suit" => 'spades',
+            ],
+        ];
+        $state['players'][0]['hole_cards'] = [
+            [
+                "rank" => 'K',
+                "suit" => 'hearts',
+            ],
+            [
+                "rank" => 'A',
+                "suit" => 'hearts',
+            ],
+        ];
+
+        $strategy = new Postflop();
+        $bet = $strategy->calculate($state);
+
+        $this->assertEquals(20, $bet);
+    }
+
     public function testHighCardCall()
     {
         $state = $this->state;
@@ -73,13 +107,25 @@ class PostlopTest extends \PHPUnit\Framework\TestCase
                 "suit" => 'clubs',
             ],
             [
-                "rank" => 'Q',
+                "rank" => '8',
                 "suit" => 'diamonds',
+            ],
+        ];
+        $state['players'][0]['hole_cards'] = [
+            [
+                "rank" => 'K',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => 'A',
+                "suit" => 'hearts',
             ],
         ];
 
         $strategy = new Postflop();
+        $bet = $strategy->calculate($state);
 
+        $this->assertEquals(0, $bet);
     }
 
     public function testHasPair1()
