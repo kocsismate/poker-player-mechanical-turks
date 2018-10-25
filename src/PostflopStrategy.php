@@ -83,7 +83,7 @@ class PostflopStrategy
 
     public function hasFull(array $cards): bool
     {
-        return false;
+        return $this->hasTwoPairs($cards) && $this->hasThreeOfAKind($cards);
     }
 
     public function hasFlush(array $cards): bool

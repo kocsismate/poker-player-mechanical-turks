@@ -704,4 +704,149 @@ class PostflopStrategyTest extends TestCase
         $strategy = new PostflopStrategy();
         $this->assertTrue($strategy->hasStraight($cards));
     }
+
+
+    public function testHasFull1()
+    {
+        $cards = [
+            [
+                "rank" => '7',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => '7',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '7',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '10',
+                "suit" => 'clubs',
+            ],
+        ];
+        $strategy = new PostflopStrategy();
+        $this->assertTrue($strategy->hasFull($cards));
+    }
+
+    public function testHasFull2()
+    {
+        $cards = [
+            [
+                "rank" => 'K',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => '7',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '7',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '10',
+                "suit" => 'clubs',
+            ],
+        ];
+        $strategy = new PostflopStrategy();
+        $this->assertTrue($strategy->hasFull($cards));
+    }
+
+    public function testHasFull3()
+    {
+        $cards = [
+            [
+                "rank" => 'K',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => 'K',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => '7',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '7',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '10',
+                "suit" => 'clubs',
+            ],
+        ];
+        $strategy = new PostflopStrategy();
+        $this->assertFalse($strategy->hasFull($cards));
+    }
+
+    public function testHasFull4()
+    {
+        $cards = [
+            [
+                "rank" => 'K',
+                "suit" => 'spades',
+            ],
+            [
+                "rank" => 'Q',
+                "suit" => 'clubs',
+            ],
+            [
+                "rank" => '7',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '7',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '6',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '9',
+                "suit" => 'diamonds',
+            ],
+            [
+                "rank" => '7',
+                "suit" => 'clubs',
+            ],
+        ];
+        $strategy = new PostflopStrategy();
+        $this->assertFalse($strategy->hasFull($cards));
+    }
 }
