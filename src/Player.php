@@ -13,7 +13,7 @@ class Player
             $strategy = new PreflopStrategy();
 
             return $strategy->calculate(
-                \Common::getCardNumbersInHand($game_state),
+                Common::getCardNumbersInHand($game_state),
                 Common::isAllIn($game_state),
                 $game_state["current_buy_in"],
                 $game_state["minimum_raise"]

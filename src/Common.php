@@ -46,7 +46,7 @@ class Common
     public static function isAllIn(array $state): bool
     {
         $stack = self::getOurStack($state);
-        $currentBuyIn = (int)$state['current_buy_in'];
+        $currentBuyIn = (int) $state['current_buy_in'];
 
         return $stack === $currentBuyIn;
     }
