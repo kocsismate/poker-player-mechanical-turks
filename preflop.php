@@ -73,11 +73,31 @@ class Preflop
     public function calculate(array $state): int
     {
         $cardNumbers = Common::getCardNumbersInHand($state);
+        $percentage = $this->getPercentage($cardNumbers);
 
-        if (isset(self::$percentages[$cardNumbers[0] . $cardNumbers[1]]) == false && isset(self::$percentages[$cardNumbers[1] . $cardNumbers[0]]) == false) {
+        // Fold if percentage is lame
+        if ($percentage === 0) {
+            return 0;
+        }
+
+        // Fold if it is all-in and percentage is < 7
+        if (Common::isAllIn($state) && $percentage < 7) {
             return 0;
         }
 
         return (int)$state['current_buy_in'];
+    }
+
+    private function getPercentage(array $cardNumbers): int
+    {
+        if (isset(self::$percentages[$cardNumbers[0] . $cardNumbers[1]])) {
+            return self::$percentages[$cardNumbers[0] . $cardNumbers[1]];
+        }
+
+        if (isset(self::$percentages[$cardNumbers[1] . $cardNumbers[0]])) {
+            return self::$percentages[$cardNumbers[1] . $cardNumbers[0]];
+        }
+
+        return 0;
     }
 }

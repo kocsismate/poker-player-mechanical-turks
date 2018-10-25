@@ -40,6 +40,14 @@ class Common
         return 0;
     }
 
+    public static function isAllIn(array $state): int
+    {
+        $stack = self::getOurStack($state);
+        $currentBuyIn = (int)$state['current_buy_in'];
+
+        return $stack === $currentBuyIn;
+    }
+
     public static function isSameColor(array $cards): bool
     {
         $commonColor = $cards[0]["suit"];
