@@ -6,12 +6,59 @@ class Postflop
 {
     public function calculate(array $state): int
     {
-        return (int)$state['current_buy_in'];
+        $value = $this->getHandValue($state);
+        if ($value > 1000) {
+            return Common::getOurStack($state);
+        } elseif ($value > 200) {
+            return max((int)$state['current_buy_in'], $state['minimum_raise']);
+        } elseif ($value > 50) {
+            return $state['minimum_raise'];
+        }
+        return 0;
     }
 
     private function getHandValue($state): int
     {
+        $cards = $this->getAllCards($state);
 
+        if ($this->hasStraightFlush($cards)) {
+            return 1000000;
+        }
+
+        if ($this->hasFourOfAKind($cards)) {
+            return 100000;
+        }
+
+        if ($this->hasFull($cards)) {
+            return 10000;
+        }
+
+        if ($this->hasFlush($cards)) {
+            return 1000;
+        }
+
+        if ($this->hasStraight($cards)) {
+            return 500;
+        }
+
+        if ($this->hasThreeOfAKind($cards)) {
+            return 300;
+        }
+
+        if ($this->hasTwoPairs($cards)) {
+            return 200;
+        }
+
+        if ($this->hasTwoPairs($cards)) {
+            return 100;
+        }
+
+        if ($this->hasPair($cards)) {
+            return 30;
+        }
+
+        $card = Common::getHighestCard($state);
+        return Common::getCardValue($card);
     }
 
     private function getAllCards($state): array
