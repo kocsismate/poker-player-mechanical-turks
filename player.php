@@ -10,14 +10,12 @@ class Player
     public function betRequest(array $game_state)
     {
         if (empty($game_state["community_cards"])) {
-            $preflop = new Preflop();
-
-            return $preflop->calculate($game_state);
+            $strategy = new Preflop();
+        } else {
+            $strategy = new Postflop();
         }
 
-        $postflop = new Preflop();
-
-        return $postflop->calculate($game_state);
+        return $strategy->calculate($game_state);
     }
 
     public function showdown(array $game_state)
