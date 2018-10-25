@@ -16,9 +16,10 @@ class Preflop
 
     public function calculate(array $state): int
     {
-        Common::getCardsInHand($state);
+        $cardNumbers = Common::getCardNumbersInHand($state);
 
-
+        if (isset(self::$percentages[$cardNumbers[0] . $cardNumbers[1]])) {
+        }
 
         return (int)$state['current_buy_in'];
     }
