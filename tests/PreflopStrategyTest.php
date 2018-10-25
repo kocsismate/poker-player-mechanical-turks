@@ -50,6 +50,13 @@ class PreflopStrategyTest extends TestCase
         $this->assertEquals(0, $preflop->calculate(["6", "4"], false, false, 10000, 500, 100, 20, 20));
     }
 
+    public function test6Q()
+    {
+        $preflop = new PreflopStrategy();
+
+        $this->assertEquals(100, $preflop->calculate(["6", "Q"], true, false, 10000, 0, 100, 20, 20));
+    }
+
     public function testPercentageJ9()
     {
         $preflop = new PreflopStrategy();
