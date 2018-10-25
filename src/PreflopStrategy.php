@@ -80,14 +80,14 @@ class PreflopStrategy
             return 0;
         }
 
-        // Fold if it is all-in and percentage is < 7
-        if ($isAllIn && $percentage < 7) {
+        // Fold if it is all-in and percentage is <= 7
+        if ($isAllIn && $percentage <= 7) {
             return 0;
         }
 
-        // Raise if percentage is > 7
-        if ($isAllIn && $percentage > 7) {
-            return $currentBuyIn + $minimumRaise;
+        // Raise if percentage is >= 8
+        if ($percentage >= 8) {
+            //return $currentBuyIn + $minimumRaise;
         }
 
         return $minimumRaise;
