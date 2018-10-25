@@ -26,42 +26,42 @@ class Postflop
 
     private function hasStraightFlush(array $cards): bool
     {
-
+        return false;
     }
 
     private function hasFourOfAKind(array $cards): bool
     {
-
+        return false;
     }
 
     private function hasFull(array $cards): bool
     {
-
+        return false;
     }
 
     private function hasFlush(array $cards): bool
     {
-
+        return false;
     }
 
     private function hasStraight(array $cards): bool
     {
-
+        return false;
     }
 
     private function hasThreeOfAKind(array $cards): bool
     {
-
+        return false;
     }
 
     private function hasTwoPairs(array $cards): bool
     {
-
+        return false;
     }
 
     private function hasPair(array $cards): bool
     {
-
+        return false;
     }
 
 }
