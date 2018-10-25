@@ -71,27 +71,41 @@ class PostflopStrategy
         return $state['community_cards'];
     }
 
-    private function hasStraightFlush(array $cards): bool
+    public function hasStraightFlush(array $cards): bool
     {
         return false;
     }
 
-    private function hasFourOfAKind(array $cards): bool
+    public function hasFourOfAKind(array $cards): bool
     {
         return false;
     }
 
-    private function hasFull(array $cards): bool
+    public function hasFull(array $cards): bool
     {
         return false;
     }
 
-    private function hasFlush(array $cards): bool
+    public function hasFlush(array $cards): bool
     {
+        $colors = [];
+        foreach ($cards as $card) {
+            if (!isset($colors[$card['suit']])) {
+                $colors[$card['suit']] = 1;
+            } else {
+                $colors[$card['suit']] += 1;
+            }
+        }
+
+        foreach ($colors as $numbers) {
+            if ($numbers > 4) {
+                return true;
+            }
+        }
         return false;
     }
 
-    private function hasStraight(array $cards): bool
+    public function hasStraight(array $cards): bool
     {
         return false;
     }

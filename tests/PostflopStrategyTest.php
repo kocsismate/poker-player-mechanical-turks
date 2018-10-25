@@ -448,7 +448,7 @@ class PostflopStrategyTest extends TestCase
                 "suit" => 'diamonds',
             ],
         ];
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $this->assertFalse($strategy->hasThreeOfAKind($cards));
     }
 
@@ -484,7 +484,7 @@ class PostflopStrategyTest extends TestCase
                 "suit" => 'diamonds',
             ],
         ];
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $this->assertTrue($strategy->hasThreeOfAKind($cards));
     }
 
@@ -520,7 +520,7 @@ class PostflopStrategyTest extends TestCase
                 "suit" => 'diamonds',
             ],
         ];
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $this->assertFalse($strategy->hasThreeOfAKind($cards));
     }
 
@@ -556,7 +556,7 @@ class PostflopStrategyTest extends TestCase
                 "suit" => 'clubs',
             ],
         ];
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $this->assertTrue($strategy->hasThreeOfAKind($cards));
     }
 
@@ -593,7 +593,7 @@ class PostflopStrategyTest extends TestCase
                 "suit" => 'clubs',
             ],
         ];
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $this->assertTrue($strategy->hasFlush($cards));
     }
 
@@ -629,7 +629,7 @@ class PostflopStrategyTest extends TestCase
                 "suit" => 'clubs',
             ],
         ];
-        $strategy = new Postflop();
+        $strategy = new PostflopStrategy();
         $this->assertFalse($strategy->hasFlush($cards));
     }
 }
