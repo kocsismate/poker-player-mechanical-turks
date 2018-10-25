@@ -15,7 +15,6 @@ class PreflopStrategyTest extends TestCase
         $this->assertEquals(100, $preflop->calculate(["A", "A"], true, 100, 20));
     }
 
-
     public function testPairOfTwo()
     {
         $preflop = new PreflopStrategy();
