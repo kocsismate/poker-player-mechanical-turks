@@ -90,7 +90,7 @@ class PreflopStrategy
             //return $currentBuyIn + $minimumRaise;
         }
 
-        return $minimumRaise;
+        return $currentBuyIn;
     }
 
     private function getPercentage(array $cardNumbers): int
