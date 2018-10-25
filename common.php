@@ -11,7 +11,7 @@ class Common {
         return [];
     }
 
-    public static function isSameColor(array $cards): boolean {
+    public static function isSameColor(array $cards): bool {
         $commonColor = $cards[0]["suit"];
         foreach($cards as $card)  {
             if($card["suit"] != $commonColor)
